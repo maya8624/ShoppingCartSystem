@@ -33,18 +33,18 @@ namespace ShoppingCartSystemTests.Promotions
         [Test]
         [TestCase(3, 330)]
         [TestCase(5, 450)]
-        public void CalculateTotal_WhenCalled_ReturnTotalAmountWithDiscountOrWithoutDiscount(int tickets, decimal expected)
+        public void CalculateTotal_WhenCalled_ReturnTotalAmountWithDiscountOrWithoutDiscount(int tours, decimal expected)
         {
             // Arrange
             var tour = _tours.Single(t => t.Id == _rule.TourId);
-            tour.SoldTours = tickets;
+            tour.SoldTours = tours;
 
             // Action 
             var result = _bulkDiscount.CalculateTotal(_tours, _rule);
 
             // Assert
-            // case 1: 110 * 3 = 330 -> Ticket price: $110, TicketsSold: 3
-            // case 2: (110 - 20) * 5 = 450 -> Ticket price: $110, Discount: $20, TicketsSold: 5
+            // case 1: 110 * 3 = 330 -> tour price: $110, tours sold: 3
+            // case 2: (110 - 20) * 5 = 450 -> tour price: $110, discount: $20, tours sold: 5
             Assert.That(result, Is.EqualTo(expected));
         }
     }

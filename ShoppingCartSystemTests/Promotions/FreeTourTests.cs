@@ -45,9 +45,9 @@ namespace ShoppingCartSystemTests.Promotions
             var result = _freeTour.CalculateTotal(_tours, _rule);
 
             // Assert
-            // case 1: (0 - 1) = -1 return $300 -> SK tickets sold: 0, OH tickets sold: 1
-            // case 2: (1 - 1) = 0 return $300 -> SK tickets sold: 1, OH tickets sold: 1
-            // case 3: (3 - 2) = 1 return $630 -> SK tickets sold: 3, OH tickets sold: 2
+            // case 1: (0 - 1) = -1 return $300 -> SK tours sold: 0, OH tours sold: 1
+            // case 2: (1 - 1) = 0 return $300 -> SK tours sold: 1, OH tours sold: 1
+            // case 3: (3 - 2) = 1 return $630 -> SK tours sold: 3, OH tours sold: 2
             Assert.That(result, Is.EqualTo(expected));
         }
     }
