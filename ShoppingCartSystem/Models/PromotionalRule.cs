@@ -10,7 +10,7 @@ namespace ShoppingCartSystem.Models
         public string Type { get; set; }
         public decimal DiscountPrice { get; set; }
         public string TourId { get; set; }
-        public int NumberOfToursForOneFree { get; set; }
-        public int NumberOfToursForDiscount { get; set; }
+        public int MinToursForOneFree { get; set; }
+        public int MinToursForDiscount { get; set; }
     }
 }
