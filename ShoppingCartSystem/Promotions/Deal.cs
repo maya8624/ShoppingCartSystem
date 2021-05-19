@@ -10,7 +10,21 @@ namespace ShoppingCartSystem.Promotions
     {
         public decimal CalculateTotal(List<Tour> tours, PromotionalRule rule)
         {
-            throw new NotImplementedException();
+            decimal total = 0m;
+            foreach (var tour in tours)
+            {
+                if (tour.Id == rule.TourId)
+                    total += CalculateDealDiscount(tour, rule);
+                else
+                    total += tour.SoldTours * tour.Price;
+            }
+            return total;
+        }
+
+        private decimal CalculateDealDiscount(Tour tour, PromotionalRule rule)
+        {
+            int freeTours = tour.SoldTours / rule.MinToursForOneFree;
+            return (tour.SoldTours - freeTours) * tour.Price;
         }
     }
 }

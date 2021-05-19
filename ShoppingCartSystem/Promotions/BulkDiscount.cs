@@ -16,17 +16,17 @@ namespace ShoppingCartSystem.Promotions
                 if (tour.Id == rule.TourId)
                     total += CalculateBulkDiscount(tour, rule);
                 else
-                    total += tour.Count * tour.Price;
+                    total += tour.SoldTours * tour.Price;
             }
             return total;
         }
 
         private decimal CalculateBulkDiscount(Tour tour, PromotionalRule rule)
         {
-            if (tour.Count >= rule.MinToursForDiscount)
-                return ((tour.Price - rule.DiscountPrice) * tour.Count);
+            if (tour.SoldTours >= rule.MinToursForDiscount)
+                return ((tour.Price - rule.DiscountPrice) * tour.SoldTours);
 
-            return tour.Count * tour.Price;
+            return tour.SoldTours * tour.Price;
         }
     }
 }
