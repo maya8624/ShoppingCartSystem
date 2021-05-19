@@ -18,17 +18,20 @@ namespace ShoppingCartSystem.Promotions
             foreach (var tour in tours)
             {
                 if (tour.Id == rule.TourId)
-                    total += CalculateFreeTourDiscount(basicTour, freeTour);
-                else
-                    total += tour.SoldTours * tour.Price;
+                    UpdateFreeTourSoldTours(basicTour, freeTour);
+                
+                total += tour.SoldTours * tour.Price;
             }
             return total;
         }
 
-        private decimal CalculateFreeTourDiscount(Tour basicTour, Tour freeTour)
+        private void UpdateFreeTourSoldTours(Tour basicTour, Tour freeTour)
         {
             int freeTours = freeTour.SoldTours - basicTour.SoldTours;
-            return freeTours >= 0 ? freeTours * freeTour.Price : 0;
+            if (freeTours > 0)
+                freeTour.SoldTours = freeTours;
+            else
+                freeTour.SoldTours = 0;
         }
     }
 }
