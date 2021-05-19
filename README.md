@@ -27,7 +27,7 @@
   -> Assume only one promotion available in the certain period so, only one promotion class should have a relationship with this interface.
 -> If we need to add a new promotion, create a new class and implement CalculateTotal(List<Tour> tours, PromotionalRule rule) method
     
- - Unit tests
+ - Unit tests using NUnit
  1. BuldDiscountTests, DealTests, FreeTourTests classes
  2. All tests passed. Please have a look at "test-result.png" file on the root.
  
