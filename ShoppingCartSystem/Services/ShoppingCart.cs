@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using ShoppingCartSystem.Interfaces;
+using ShoppingCartSystem.Promotions;
 
 namespace ShoppingCartSystem.Services
 {
@@ -10,7 +11,7 @@ namespace ShoppingCartSystem.Services
         private readonly List<Tour> _tours = new List<Tour>();
         private readonly MockTour _mockTour = new MockTour();
         private readonly PromotionalRule _rule;
-        private readonly IPromotionCalculator _calculator;
+        //private readonly IPromotionCalculator _calculator;
 
         public ShoppingCart(PromotionalRule rule)
         {
@@ -25,8 +26,15 @@ namespace ShoppingCartSystem.Services
         }
 
         public decimal Total()
-        {
-            return _calculator.CalculateTotal(_tours, _rule);
+        {               
+            var result = new BulkDiscount();
+            //var result = new Deal();
+            //var result = new FreeTour();
+            
+            // call a method directly, need to write extra code to use dependency injection in console application            
+            return result.CalculateTotal(_tours, _rule);
+
+            // return _calculator.CalculateTotal(_tours, _rule);
         }
     }
 }
