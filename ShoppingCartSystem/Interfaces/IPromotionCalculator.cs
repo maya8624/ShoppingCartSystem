@@ -7,6 +7,6 @@ namespace ShoppingCartSystem.Interfaces
 {
     public interface IPromotionCalculator
     {
-        decimal CalculateTotalAmount(List<Tour> tours);
+        decimal CalculateTotal(List<Tour> tours, PromotionalRule rule);
     }
 }
