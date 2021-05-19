@@ -9,20 +9,17 @@ namespace ShoppingCartSystemTests.Promotions
     public class FreeTourTests
     {
         private FreeTour _freeTour;
-        private MockTour _mockTour;
-        private PromotionalRule _rule;
-        private List<Tour> _tours;
+        private MockBooking _mockBooking;        
+        private List<Booking> _bookings;
 
         [SetUp]
         public void SetUp()
         {
-            _freeTour = new FreeTour();
-            _mockTour = new MockTour();
-            _tours = _mockTour.GetTours();
+            _mockBooking = new MockBooking();
+            _bookings = _mockBooking.GetBookings();
 
-            _rule = new PromotionalRule
-            {
-                Id = 0,
+            _freeTour = new FreeTour
+            { 
                 TourId = "OH",
                 FreeTourId = "SK",
             };
@@ -32,17 +29,19 @@ namespace ShoppingCartSystemTests.Promotions
         [TestCase(0, 1, 300)]
         [TestCase(1, 1, 300)]
         [TestCase(3, 2, 630)]
-        public void CalculateTotal_WhenCalled_ReturnTotalAmountWithFreeTour(int freeTours, int soldTours, decimal expected)
+        public void CalculateTotal_WhenCalled_ReturnTotalAmountWithFreeTour(int freeCount, int basicCount, decimal expected)
         {
             // Arrange
-            var basicTour = _tours.Single(t => t.Id == _rule.TourId);           
-            basicTour.SoldTours = soldTours;
-
-            var freeTour = _tours.Single(t => t.Id == _rule.FreeTourId);
-            freeTour.SoldTours = freeTours;
+            var basicTour = _bookings.Single(b => b.TourId == "OH");           
+            basicTour.Count = basicCount;
+            basicTour.Amount = basicTour.Price * basicCount;
+            
+            var freeTour = _bookings.Single(b => b.TourId == "SK");
+            freeTour.Count = freeCount;
+            freeTour.Amount = freeTour.Price * freeCount;
 
             // Action 
-            var result = _freeTour.CalculateTotal(_tours, _rule);
+            var result = _freeTour.CalculateTotal(_bookings);
 
             // Assert
             // case 1: (0 - 1) = -1 return $300 -> SK tours sold: 0, OH tours sold: 1

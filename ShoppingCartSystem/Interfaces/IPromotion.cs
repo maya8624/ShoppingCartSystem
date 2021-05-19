@@ -5,8 +5,8 @@ using System.Text;
 
 namespace ShoppingCartSystem.Interfaces
 {
-    public interface IPromotionCalculator
+    public interface IPromotion
     {
-        decimal CalculateTotal(List<Tour> tours, PromotionalRule rule);
+        decimal CalculateTotal(List<Booking> bookings);
     }
 }

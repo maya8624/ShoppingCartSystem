@@ -6,25 +6,31 @@ using System.Text;
 
 namespace ShoppingCartSystem.Promotions
 {
-    public class Deal : IPromotionCalculator
+    public class Deal : IPromotion
     {
-        public decimal CalculateTotal(List<Tour> tours, PromotionalRule rule)
+        private string _tourId;        
+        public string TourId { set => _tourId = value; }
+
+        private int _minToursForOneFree;        
+        public int MinToursForOneFree { set => _minToursForOneFree = value; }
+
+        public decimal CalculateTotal(List<Booking> bookings)
         {
             decimal total = 0m;
-            foreach (var tour in tours)
+            foreach (var booking in bookings)
             {
-                if (tour.Id == rule.TourId)
-                    total += CalculateDealDiscount(tour, rule);
-                else
-                    total += tour.SoldTours * tour.Price;
+                if (booking.TourId == _tourId)
+                    CalculateDealDiscount(booking);
+                
+                total += booking.Amount;
             }
             return total;
         }
 
-        private decimal CalculateDealDiscount(Tour tour, PromotionalRule rule)
+        private void CalculateDealDiscount(Booking booking)
         {
-            int freeTours = tour.SoldTours / rule.MinToursForOneFree;
-            return (tour.SoldTours - freeTours) * tour.Price;
+            int freeTours = booking.Count / _minToursForOneFree;
+            booking.Amount -= freeTours * booking.Price;
         }
     }
 }

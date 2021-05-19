@@ -7,31 +7,35 @@ using System.Text;
 
 namespace ShoppingCartSystem.Promotions
 {
-    public class FreeTour : IPromotionCalculator
+    public class FreeTour : IPromotion
     {
-        public decimal CalculateTotal(List<Tour> tours, PromotionalRule rule)
+        private string _tourId;
+        public string TourId { set => _tourId = value; }
+
+        private string _freeTourId;
+        public string FreeTourId { set => _freeTourId = value; }
+
+        public decimal CalculateTotal(List<Booking> bookings)
         {
-            var basicTour = tours.Single(t => t.Id == rule.TourId);
-            var freeTour = tours.Single(t => t.Id == rule.FreeTourId);
+            var basicTour = bookings.Single(t => t.TourId == _tourId);
+            var freeTour = bookings.Single(t => t.TourId == _freeTourId);
 
             decimal total = 0m;
-            foreach (var tour in tours)
+            foreach (var booking in bookings)
             {
-                if (tour.Id == rule.TourId)
+                if (booking.TourId == _tourId)
                     UpdateFreeTourSoldTours(basicTour, freeTour);
                 
-                total += tour.SoldTours * tour.Price;
+                total += booking.Amount;
             }
             return total;
         }
 
-        private void UpdateFreeTourSoldTours(Tour basicTour, Tour freeTour)
+        private void UpdateFreeTourSoldTours(Booking basicTour, Booking freeTour)
         {
-            int freeTours = freeTour.SoldTours - basicTour.SoldTours;
-            if (freeTours > 0)
-                freeTour.SoldTours = freeTours;
-            else
-                freeTour.SoldTours = 0;
+           if (freeTour.Count > 0)
+                freeTour.Amount -= freeTour.Price * basicTour.Count;
+            
         }
     }
 }

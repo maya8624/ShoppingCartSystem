@@ -8,33 +8,26 @@ namespace ShoppingCartSystem.Services
 {
     public class ShoppingCart
     {
-        private readonly List<Tour> _tours = new List<Tour>();
-        private readonly MockTour _mockTour = new MockTour();
-        private readonly PromotionalRule _rule;
-        //private readonly IPromotionCalculator _calculator;
+        private readonly List<Booking> _bookings = new List<Booking>();
+        private readonly MockBooking _mockBooking = new MockBooking();        
+        private readonly IPromotion _promotion;
 
-        public ShoppingCart(PromotionalRule rule)
+        public ShoppingCart(IPromotion promotion)
         {
-            _tours = _mockTour.GetTours();
-            _rule = rule;
+            _bookings = _mockBooking.GetBookings();
+            _promotion = promotion;   
         }
 
         public void Add(string tourId)
         {
-            Tour tour = _tours.First(t => t.Id == tourId);
-            tour.SoldTours++;
+            Booking booking = _bookings.First(b => b.TourId == tourId);
+            booking.Amount += booking.Price;
+            booking.Count++;
         }
 
         public decimal Total()
-        {               
-            var result = new BulkDiscount();
-            //var result = new Deal();
-            //var result = new FreeTour();
-            
-            // call a method directly, need to write extra code to use dependency injection in console application            
-            return result.CalculateTotal(_tours, _rule);
-
-            // return _calculator.CalculateTotal(_tours, _rule);
+        {
+            return _promotion.CalculateTotal(_bookings);                 
         }
     }
 }

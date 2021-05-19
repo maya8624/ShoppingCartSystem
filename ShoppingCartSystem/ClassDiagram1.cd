@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ShoppingCartSystem.Models.Booking">
+    <Position X="8" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAASAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Models\Booking.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShoppingCartSystem.Models.MockBooking">
+    <Position X="9.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Models\MockBooking.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShoppingCartSystem.Promotions.BulkDiscount" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="2.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAABAAAAAAAAACAAgAAIAAAgAAEAQAAAAA=</HashCode>
+      <FileName>Promotions\BulkDiscount.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.763" />
+  </Class>
+  <Class Name="ShoppingCartSystem.Promotions.Deal" BaseTypeListCollapsed="true">
+    <Position X="5.25" Y="2.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>QAAAAgAAABAAAAAAAAAAAACAAAAAAgAAAAAEAAAAAAA=</HashCode>
+      <FileName>Promotions\Deal.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.818" />
+  </Class>
+  <Class Name="ShoppingCartSystem.Promotions.FreeTour" BaseTypeListCollapsed="true">
+    <Position X="3" Y="2.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>QAAQAIAAAAAAAAAAAAAAAACAAAAAABAAAAAEAAAAAAA=</HashCode>
+      <FileName>Promotions\FreeTour.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.846" />
+  </Class>
+  <Class Name="ShoppingCartSystem.Services.ShoppingCart">
+    <Position X="8" Y="4.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAEAAAAAAABAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\ShoppingCart.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="ShoppingCartSystem.Interfaces.IPromotion">
+    <Position X="3.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IPromotion.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

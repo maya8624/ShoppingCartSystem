@@ -9,36 +9,34 @@ namespace ShoppingCartSystemTests.Promotions
     public class DealTests
     {
         private Deal _deal;
-        private MockTour _mockTour;
-        private PromotionalRule _rule;
-        private List<Tour> _tours;
+        private MockBooking _mockBooking;
+        private List<Booking> _bookings;
 
         [SetUp]
         public void SetUp()
         {
-            _deal = new Deal();
-            _mockTour = new MockTour();
-            _tours = _mockTour.GetTours();
-
-            _rule = new PromotionalRule
-            {
-                Id = 0,
-                TourId = "OH",
-                MinToursForOneFree = 3
-            };
+            _mockBooking = new MockBooking();
+            _bookings = _mockBooking.GetBookings();
         }
 
         [Test]
         [TestCase(3, 600)]
         [TestCase(7, 1500)]
-        public void CalculateTotal_WhenCalled_CalculateFreeTours_ReturnDiscountedTotalAmount(int tours, decimal expected)
+        public void CalculateTotal_WhenCalled_CalculateFreeTours_ReturnDiscountedTotalAmount(int count, decimal expected)
         {
             // Arrange
-            var tour = _tours.Single(t => t.Id == _rule.TourId);
-            tour.SoldTours = tours;
+            _deal = new Deal
+            {
+                TourId = "OH",
+                MinToursForOneFree = 3
+            };
+
+            var booking = _bookings.Single(b => b.TourId == "OH");
+            booking.Amount = booking.Price * count;
+            booking.Count = count;
 
             // Action 
-            var result = _deal.CalculateTotal(_tours, _rule);
+            var result = _deal.CalculateTotal(_bookings);
 
             // Assert
             // case 1: 3 / 3 = 1 -> 1 free tour -> (3 - 1) * 300 -> return $600

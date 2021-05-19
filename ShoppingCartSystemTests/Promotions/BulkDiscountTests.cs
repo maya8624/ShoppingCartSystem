@@ -10,37 +10,36 @@ namespace ShoppingCartSystemTests.Promotions
     public class BulkDiscountTests
     {
         private BulkDiscount _bulkDiscount;
-        private MockTour _mockTour;
-        private PromotionalRule _rule;
-        private List<Tour> _tours;
+        private MockBooking _mockBooking;        
+        private List<Booking> _bookings;
 
         [SetUp]
         public void SetUp()
         {
-            _bulkDiscount = new BulkDiscount();
-            _mockTour = new MockTour();
-            _tours = _mockTour.GetTours();
-                             
-            _rule = new PromotionalRule
-            {
-                Id = 0,
-                DiscountPrice = 20.00m,
-                TourId = "BC",
-                MinToursForDiscount = 5
-            };
+            _mockBooking = new MockBooking();
+            _bookings = _mockBooking.GetBookings();
         }
 
         [Test]
         [TestCase(3, 330)]
         [TestCase(5, 450)]
-        public void CalculateTotal_WhenCalled_ReturnTotalAmountWithDiscountOrWithoutDiscount(int tours, decimal expected)
+        public void CalculateTotal_WhenCalled_ReturnTotalAmountWithDiscountOrWithoutDiscount(int count, decimal expected)
         {
             // Arrange
-            var tour = _tours.Single(t => t.Id == _rule.TourId);
-            tour.SoldTours = tours;
+            _bulkDiscount = new BulkDiscount
+            {
+                DiscountPrice = 20.00m,
+                TourId = "BC",
+                MinToursForDiscount = 3
+            };
+
+            var booking = _bookings.Single(b => b.TourId == "BC");
+            booking.Amount = booking.Price * count;
+            booking.Count = count;
+
 
             // Action 
-            var result = _bulkDiscount.CalculateTotal(_tours, _rule);
+            var result = _bulkDiscount.CalculateTotal(_bookings);
 
             // Assert
             // case 1: 110 * 3 = 330 -> tour price: $110, tours sold: 3

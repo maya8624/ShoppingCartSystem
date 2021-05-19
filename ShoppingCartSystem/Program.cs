@@ -1,6 +1,7 @@
 ﻿using ShoppingCartSystem.Enums;
 using ShoppingCartSystem.Interfaces;
 using ShoppingCartSystem.Models;
+using ShoppingCartSystem.Promotions;
 using ShoppingCartSystem.Services;
 using System;
 
@@ -11,39 +12,36 @@ namespace ShoppingCartSystem
         static void Main(string[] args)
         {
             // 1. Bulk discount rules
-            var promotionRule = new PromotionalRule
+            var promotion = new BulkDiscount
             {
-                Id = Convert.ToInt32(PromotionType.BulkDiscount),
-                DiscountPrice = 20.00m,
                 TourId = "BC",
+                DiscountPrice = 20.00m,
                 MinToursForDiscount = 5
             };
 
             // 2. Three for two deal rules
-            //var promotionRule = new PromotionalRule
-            //{
-            //    Id = Convert.ToInt32(PromotionType.Deal),
+            //var promotion = new Deal
+            //{                
             //    TourId = "OH",
             //    MinToursForOneFree = 3
             //};
 
             // 3. Free tour rules
-            //var promotionRule = new PromotionalRule
-            //{
-            //    Id = Convert.ToInt32(PromotionType.FreeTour),
+            //var promotion = new FreeTour
+            //{               
             //    TourId = "OH",
-            //    FreeTourId = "SK",                
+            //    FreeTourId = "SK",
             //};
 
-            var cart = new ShoppingCart(promotionRule);
+            var cart = new ShoppingCart(promotion);
 
             // 1. Bulk discount -> return $750
-            cart.Add("BC");
-            cart.Add("BC");
-            cart.Add("BC");
-            cart.Add("BC");
-            cart.Add("BC");
-            cart.Add("OH");
+            //cart.Add("BC");
+            //cart.Add("BC");
+            //cart.Add("BC");
+            //cart.Add("BC");
+            //cart.Add("BC");
+            //cart.Add("OH");
 
             // 2. Three for two deal -> return $710
             //cart.Add("OH");
