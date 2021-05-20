@@ -19,18 +19,12 @@ namespace ShoppingCartSystem.Promotions
             decimal total = 0m;
             foreach (var booking in bookings)
             {
-                if (booking.TourId == _tourId)
-                    CalculateDealDiscount(booking);
+                if (booking.TourId == _tourId)                
+                    booking.Amount -= (booking.Count / _minToursForOneFree) * booking.Price;
                 
                 total += booking.Amount;
             }
             return total;
-        }
-
-        private void CalculateDealDiscount(Booking booking)
-        {
-            int freeTours = booking.Count / _minToursForOneFree;
-            booking.Amount -= freeTours * booking.Price;
         }
     }
 }

@@ -22,18 +22,12 @@ namespace ShoppingCartSystem.Promotions
             decimal total = 0m;
             foreach (var booking in bookings)
             {
-                if (booking.TourId == _tourId)
-                    CalculateBulkDiscount(booking);
+                if (booking.TourId == _tourId && booking.Count >= _minToursForDiscount)
+                    booking.Amount -= booking.Count * _discountPrice;                
                 
                 total += booking.Amount;
             }
             return total;
-        }
-
-        private void CalculateBulkDiscount(Booking booking)
-        {
-            if (booking.Count >= _minToursForDiscount)
-                booking.Amount -= booking.Count * _discountPrice;
         }
     }
 }
