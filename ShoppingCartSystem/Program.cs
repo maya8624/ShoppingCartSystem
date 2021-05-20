@@ -12,26 +12,13 @@ namespace ShoppingCartSystem
         static void Main(string[] args)
         {
             // 1. Bulk discount rules
-            var promotion = new BulkDiscount
-            {
-                TourId = "BC",
-                DiscountPrice = 20.00m,
-                MinToursForDiscount = 5
-            };
+            var promotion = new BulkDiscount("BC", 20.00m, 5);
 
             // 2. Three for two deal rules
-            //var promotion = new Deal
-            //{                
-            //    TourId = "OH",
-            //    MinToursForOneFree = 3
-            //};
+            //var promotion = new Deal("OH", 3);
 
             // 3. Free tour rules
-            //var promotion = new FreeTour
-            //{               
-            //    TourId = "OH",
-            //    FreeTourId = "SK",
-            //};
+            //var promotion = new FreeTour("OH", "SK");
 
             var cart = new ShoppingCart(promotion);
 

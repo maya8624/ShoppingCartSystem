@@ -15,6 +15,12 @@ namespace ShoppingCartSystem.Promotions
         private string _freeTourId;
         public string FreeTourId { set => _freeTourId = value; }
 
+        public FreeTour(string tourId, string freeTourId)
+        {
+            TourId = tourId;
+            FreeTourId = freeTourId;
+        }
+
         public decimal CalculateTotal(List<Booking> bookings)
         {
             var basicTour = bookings.Single(t => t.TourId == _tourId);

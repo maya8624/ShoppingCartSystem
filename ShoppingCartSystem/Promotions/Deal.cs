@@ -14,6 +14,12 @@ namespace ShoppingCartSystem.Promotions
         private int _minToursForOneFree;        
         public int MinToursForOneFree { set => _minToursForOneFree = value; }
 
+        public Deal(string tourId, int minToursForOneFree)
+        {
+            TourId = tourId;
+            MinToursForOneFree = minToursForOneFree;
+        }
+
         public decimal CalculateTotal(List<Booking> bookings)
         {
             decimal total = 0m;

@@ -17,6 +17,13 @@ namespace ShoppingCartSystem.Promotions
         private int _minToursForDiscount;        
         public int MinToursForDiscount { set => _minToursForDiscount = value; }
 
+        public BulkDiscount(string tourId, decimal discountPrice, int minToursForDiscount)
+        {            
+            TourId = tourId;
+            DiscountPrice = discountPrice;
+            MinToursForDiscount = minToursForDiscount;
+        }
+
         public decimal CalculateTotal(List<Booking> bookings)
         {
             decimal total = 0m;
