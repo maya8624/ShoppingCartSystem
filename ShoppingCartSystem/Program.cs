@@ -36,12 +36,12 @@ namespace ShoppingCartSystem
             var cart = new ShoppingCart(promotion);
 
             // 1. Bulk discount -> return $750
-            //cart.Add("BC");
-            //cart.Add("BC");
-            //cart.Add("BC");
-            //cart.Add("BC");
-            //cart.Add("BC");
-            //cart.Add("OH");
+            cart.Add("BC");
+            cart.Add("BC");
+            cart.Add("BC");
+            cart.Add("BC");
+            cart.Add("BC");
+            cart.Add("OH");
 
             // 2. Three for two deal -> return $710
             //cart.Add("OH");

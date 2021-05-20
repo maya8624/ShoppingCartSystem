@@ -32,7 +32,7 @@ namespace ShoppingCartSystem.Promotions
 
         private void CalculateBulkDiscount(Booking booking)
         {
-            if (booking.Count > _minToursForDiscount)
+            if (booking.Count >= _minToursForDiscount)
                 booking.Amount -= booking.Count * _discountPrice;
         }
     }

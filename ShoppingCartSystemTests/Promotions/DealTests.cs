@@ -17,6 +17,11 @@ namespace ShoppingCartSystemTests.Promotions
         {
             _mockBooking = new MockBooking();
             _bookings = _mockBooking.GetBookings();
+            _deal = new Deal
+            {
+                TourId = "OH",
+                MinToursForOneFree = 3
+            };
         }
 
         [Test]
@@ -25,12 +30,6 @@ namespace ShoppingCartSystemTests.Promotions
         public void CalculateTotal_WhenCalled_CalculateFreeTours_ReturnDiscountedTotalAmount(int count, decimal expected)
         {
             // Arrange
-            _deal = new Deal
-            {
-                TourId = "OH",
-                MinToursForOneFree = 3
-            };
-
             var booking = _bookings.Single(b => b.TourId == "OH");
             booking.Amount = booking.Price * count;
             booking.Count = count;
