@@ -10,7 +10,7 @@
   -> calculate the total price by Bulk Discount rules.
 
 3. Deal
-  -> calculate the total price by three for tow deal rules
+  -> calculate the total price by three for two deal rules
   
 4. FreeTour
   -> calculate the total price by free tour rules
